@@ -126,7 +126,3 @@ python main.py
 - 🔔 Desktop notifications
 
 ---
-
-## 📜 License
-MIT License
-
