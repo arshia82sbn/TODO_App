@@ -127,13 +127,6 @@ python main.py
 
 ---
 
-## 🧑‍💻 Author
-**Arshia Saberian**
-
-If you liked this, give the repo a ⭐ and feel free to contribute!
-
----
-
 ## 📜 License
 MIT License
 
