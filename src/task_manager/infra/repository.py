@@ -38,7 +38,7 @@ class TaskRepository:
             return []
 
     def save_all(self, tasks: List[Task]) -> None:
-        """Saves all tasks to the JSON file.
+        """Saves all tasks to the specified JSON file.
 
         Args:
             tasks (List[Task]): The list of Task objects to save.

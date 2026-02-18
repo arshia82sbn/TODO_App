@@ -38,3 +38,23 @@ class Task:
             text=data.get("text", ""),
             completed=data.get("completed", False)
         )
+
+
+class TaskFactory:
+    """Factory for creating Task instances.
+
+    This class implements the Factory pattern to centralize task creation.
+    """
+
+    @staticmethod
+    def create_task(text: str, completed: bool = False) -> Task:
+        """Creates a new Task instance.
+
+        Args:
+            text (str): The description of the task.
+            completed (bool): Whether the task is completed. Defaults to False.
+
+        Returns:
+            Task: A new Task instance.
+        """
+        return Task(text=text, completed=completed)

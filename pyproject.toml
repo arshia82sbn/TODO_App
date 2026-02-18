@@ -16,6 +16,14 @@ dependencies = [
     "customtkinter>=5.2.1",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "mypy",
+    "ruff",
+    "black",
+]
+
 [project.scripts]
 task-manager = "task_manager.__main__:main"
 
