@@ -1,7 +1,6 @@
-import os
-import json
-from task_manager.models.task import Task
 from task_manager.infra.repository import TaskRepository
+from task_manager.models.task import Task
+
 
 def test_task_serialization():
     task = Task(text="Test Task", completed=True)

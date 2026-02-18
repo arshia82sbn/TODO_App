@@ -16,7 +16,17 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
         completed: bool,
         on_toggle: Any,
         on_delete: Any
-    ):
+    ) -> None:
+        """Initializes a task row.
+
+        Args:
+            master (Any): The parent widget.
+            index (int): The index of the task in the list.
+            task_text (str): The description of the task.
+            completed (bool): Whether the task is completed.
+            on_toggle (Any): Callback for when the task is toggled.
+            on_delete (Any): Callback for when the task is deleted.
+        """
         super().__init__(master, fg_color="transparent")
         self.index = index
 
@@ -43,7 +53,11 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
         self.update_style(completed)
 
     def update_style(self, completed: bool) -> None:
-        """Updates the style of the label based on completion status."""
+        """Updates the style of the label based on completion status.
+
+        Args:
+            completed (bool): Whether the task is completed.
+        """
         if completed:
             self.label.configure(text_color="#888888", font=ctk.CTkFont(overstrike=True))
         else:
@@ -119,19 +133,19 @@ class TaskApp(ctk.CTk):  # type: ignore
             self.refresh_task_list()
 
     def toggle_task(self, index: int) -> None:
-        """Toggles a task's completion status.
+        """Toggles a task's completion status and updates styles.
 
         Args:
-            index (int): The index of the task.
+            index (int): The index of the task in the list.
         """
         self.service.toggle_task(index)
         self.update_task_styles()
 
     def delete_task(self, index: int) -> None:
-        """Deletes a task.
+        """Deletes a task and refreshes the task list.
 
         Args:
-            index (int): The index of the task.
+            index (int): The index of the task to delete.
         """
         self.service.delete_task(index)
         self.refresh_task_list()
