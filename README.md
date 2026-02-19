@@ -10,8 +10,8 @@ A professional, refactored task manager built with **CustomTkinter**.
 - ✅ **Toggle Tasks**: Mark tasks as completed with a visual strike-through.
 - ❌ **Delete Tasks**: Remove tasks instantly.
 - 💾 **Persistence**: Automatic saving to `tasks.json`.
-- 🏗️ **Clean Architecture**: Implemented with Repository and Service patterns.
-- 🧪 **Tested**: Unit tests included.
+- 🏗️ **Clean Architecture**: Implemented with Repository, Service, and Factory patterns.
+- 🧪 **Tested**: Unit tests included with high coverage.
 
 ## 📦 Installation
 
@@ -22,7 +22,7 @@ pip install .
 Or for development:
 
 ```bash
-pip install -e .
+pip install -e ".[dev]"
 ```
 
 ## 🛠️ Usage
@@ -41,11 +41,11 @@ task-manager
 
 ## 🏗️ Project Structure
 
-- `src/task_manager/api/`: GUI implementation.
+- `src/task_manager/api/`: GUI implementation (CustomTkinter).
 - `src/task_manager/core/`: Business logic (TaskService).
 - `src/task_manager/infra/`: Persistence logic (TaskRepository).
-- `src/task_manager/models/`: Data models (Task).
-- `tests/`: Unit tests.
+- `src/task_manager/models/`: Data models and Factory (Task, TaskFactory).
+- `tests/`: Unit tests with `pytest`.
 
 ## 🧪 Testing
 
@@ -59,3 +59,5 @@ pytest
 
 - Modern Dark Theme.
 - Responsive design with scrollable task list.
+- Clean separation of concerns.
+- Full type hinting and PEP 8 compliance.

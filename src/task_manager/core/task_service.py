@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from task_manager.infra.repository import TaskRepository
-from task_manager.models.task import Task
+from task_manager.models.task import Task, TaskFactory
 
 
 class TaskService:
@@ -38,7 +38,7 @@ class TaskService:
         Returns:
             Task: The newly created task.
         """
-        new_task = Task(text=text)
+        new_task = TaskFactory.create_task(text=text)
         self.tasks.append(new_task)
         self.repository.save_all(self.tasks)
         return new_task
