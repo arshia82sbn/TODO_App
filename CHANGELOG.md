@@ -8,8 +8,10 @@ All notable changes to this project will be documented in this file.
 - Initial refactored release.
 - Class-based GUI using `customtkinter`.
 - Repository pattern for task persistence.
-- Service layer for business logic.
+- Strategy pattern for repository abstractions.
+- Factory pattern for task creation.
+- Service layer (Facade) for business logic.
 - Type hints and docstrings throughout.
 - `pyproject.toml` for modern build system.
-- Basic unit tests with `pytest`.
+- Unit tests with `pytest`.
 - CI workflow with GitHub Actions.

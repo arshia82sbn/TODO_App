@@ -1,13 +1,22 @@
-import pytest
 from unittest.mock import MagicMock
+
+import pytest
+
 from task_manager.core.task_service import TaskService
-from task_manager.models.task import Task
+from task_manager.models.task import Task, TaskFactory
+
 
 @pytest.fixture
 def mock_repo():
     repo = MagicMock()
     repo.load_all.return_value = [Task(text="Initial Task")]
     return repo
+
+def test_task_factory():
+    task = TaskFactory.create_task("Test Task")
+    assert isinstance(task, Task)
+    assert task.text == "Test Task"
+    assert task.completed is False
 
 def test_service_initialization(mock_repo):
     service = TaskService(repository=mock_repo)
