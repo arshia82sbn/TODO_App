@@ -1,4 +1,5 @@
-from task_manager.models.task import TaskFactory, Task
+from task_manager.models.task import Task, TaskFactory
+
 
 def test_task_factory_create_task():
     """Confirms TaskFactory.create_task returns a Task instance with the expected attributes."""
@@ -9,6 +10,7 @@ def test_task_factory_create_task():
     assert isinstance(task, Task)
     assert task.text == text
     assert task.completed == completed
+
 
 def test_task_factory_create_default_task():
     """Confirms TaskFactory.create_task handles default values correctly."""
