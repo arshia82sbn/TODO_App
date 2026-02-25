@@ -13,7 +13,7 @@ authors = [
     { name = "Jules", email = "jules@example.com" }
 ]
 dependencies = [
-    "customtkinter>=5.2.1",
+    "customtkinter>=5.2.1", # Required for the modern, class-based GUI
 ]
 
 [project.scripts]
