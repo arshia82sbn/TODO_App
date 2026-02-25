@@ -1,7 +1,6 @@
-import os
-import json
-from task_manager.models.task import Task
 from task_manager.infra.repository import TaskRepository
+from task_manager.models.task import Task
+
 
 def test_task_serialization():
     task = Task(text="Test Task", completed=True)
@@ -11,6 +10,7 @@ def test_task_serialization():
     new_task = Task.from_dict(data)
     assert new_task.text == "Test Task"
     assert new_task.completed is True
+
 
 def test_repository_load_save(tmp_path):
     filepath = tmp_path / "tasks.json"
@@ -23,6 +23,7 @@ def test_repository_load_save(tmp_path):
     assert len(loaded_tasks) == 2
     assert loaded_tasks[0].text == "Task 1"
     assert loaded_tasks[1].completed is True
+
 
 def test_repository_corrupted_file(tmp_path):
     filepath = tmp_path / "corrupted.json"
