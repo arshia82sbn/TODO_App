@@ -10,7 +10,7 @@ A professional, refactored task manager built with **CustomTkinter**.
 - ✅ **Toggle Tasks**: Mark tasks as completed with a visual strike-through.
 - ❌ **Delete Tasks**: Remove tasks instantly.
 - 💾 **Persistence**: Automatic saving to `tasks.json`.
-- 🏗️ **Clean Architecture**: Implemented with Repository and Service patterns.
+- 🏗️ **Clean Architecture**: Implemented with Repository, Strategy, and Factory patterns.
 - 🧪 **Tested**: Unit tests included.
 
 ## 📦 Installation
