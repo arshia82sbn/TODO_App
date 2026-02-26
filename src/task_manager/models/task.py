@@ -10,6 +10,7 @@ class Task:
         text (str): The description of the task.
         completed (bool): Whether the task is completed.
     """
+
     text: str
     completed: bool = False
 
@@ -19,10 +20,7 @@ class Task:
         Returns:
             Dict[str, Any]: Dictionary representation of the task.
         """
-        return {
-            "text": self.text,
-            "completed": self.completed
-        }
+        return {"text": self.text, "completed": self.completed}
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "Task":
@@ -34,10 +32,7 @@ class Task:
         Returns:
             Task: A new Task instance.
         """
-        return cls(
-            text=data.get("text", ""),
-            completed=data.get("completed", False)
-        )
+        return cls(text=data.get("text", ""), completed=data.get("completed", False))
 
 
 # Rationale: Added TaskFactory to centralize task creation, improving

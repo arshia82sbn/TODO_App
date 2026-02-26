@@ -1,5 +1,6 @@
 from task_manager.models.task import Task, TaskFactory
 
+
 def test_task_factory_create_task():
     """Tests the TaskFactory.create_task method."""
     text = "Test Task"
@@ -7,6 +8,7 @@ def test_task_factory_create_task():
     assert isinstance(task, Task)
     assert task.text == text
     assert task.completed is False
+
 
 def test_task_factory_create_completed_task():
     """Tests the TaskFactory.create_task method with completed=True."""
