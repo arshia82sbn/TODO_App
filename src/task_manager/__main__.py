@@ -1,4 +1,4 @@
-from task_manager.api.gui import TaskApp
+from task_manager.api import TaskApp
 
 
 def main() -> None:

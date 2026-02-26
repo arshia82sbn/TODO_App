@@ -21,6 +21,13 @@ def test_service_add_task(mock_repo):
     assert service.get_tasks()[1].text == "New Task"
     assert mock_repo.save_all.called
 
+
+def test_service_refresh_tasks(mock_repo):
+    service = TaskService(repository=mock_repo)
+    mock_repo.load_all.return_value = [Task(text="Task 1"), Task(text="Task 2")]
+    service.refresh_tasks()
+    assert len(service.get_tasks()) == 2
+
 def test_service_toggle_task(mock_repo):
     service = TaskService(repository=mock_repo)
     service.toggle_task(0)

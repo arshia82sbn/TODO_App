@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, Callable, List, Optional
 
 import customtkinter as ctk
 
@@ -14,8 +14,8 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
         index: int,
         task_text: str,
         completed: bool,
-        on_toggle: Any,
-        on_delete: Any
+        on_toggle: Callable[[int], None],
+        on_delete: Callable[[int], None]
     ):
         super().__init__(master, fg_color="transparent")
         self.index = index
