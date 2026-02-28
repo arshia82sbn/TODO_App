@@ -1,11 +1,30 @@
 import json
 import os
+from abc import ABC, abstractmethod
 from typing import List
 
 from task_manager.models.task import Task
 
 
-class TaskRepository:
+class BaseRepository(ABC):
+    """Abstract base class for task repositories.
+
+    This implements the Strategy Pattern, allowing TaskService to depend
+    on an abstraction for persistence.
+    """
+
+    @abstractmethod
+    def load_all(self) -> List[Task]:
+        """Loads all tasks from storage."""
+        pass
+
+    @abstractmethod
+    def save_all(self, tasks: List[Task]) -> None:
+        """Saves all tasks to storage."""
+        pass
+
+
+class TaskRepository(BaseRepository):
     """Handles persistence of tasks to a JSON file.
 
     This class implements the Repository Pattern to abstract the data storage
