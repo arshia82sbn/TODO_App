@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2024-05-22
+
+### Added
+- `TaskFactory` for centralized task creation (Factory Pattern).
+- `BaseRepository` abstract base class (Strategy Pattern).
+- Exported `TaskApp` in `task_manager.api`.
+
+### Changed
+- Refactored `TaskService` to use Dependency Inversion with `BaseRepository`.
+- Improved type hints in GUI layer.
+- Cleaned up source code comments and docstrings.
+
 ## [0.1.0] - 2023-10-27
 
 ### Added

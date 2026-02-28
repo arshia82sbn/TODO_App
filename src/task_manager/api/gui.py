@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, Callable, List, Optional
 
 import customtkinter as ctk
 
@@ -6,7 +6,10 @@ from task_manager.core.task_service import TaskService
 
 
 class TaskRow(ctk.CTkFrame):  # type: ignore
-    """A custom frame representing a single task row in the UI."""
+    """A custom frame representing a single task row in the UI.
+
+    This class manages individual task widgets and handles user interaction.
+    """
 
     def __init__(
         self,
@@ -14,9 +17,19 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
         index: int,
         task_text: str,
         completed: bool,
-        on_toggle: Any,
-        on_delete: Any
+        on_toggle: Callable[[int], None],
+        on_delete: Callable[[int], None]
     ):
+        """Initializes the task row.
+
+        Args:
+            master (Any): The parent widget.
+            index (int): The index of the task.
+            task_text (str): The description of the task.
+            completed (bool): Whether the task is completed.
+            on_toggle (Callable[[int], None]): Callback for toggling task.
+            on_delete (Callable[[int], None]): Callback for deleting task.
+        """
         super().__init__(master, fg_color="transparent")
         self.index = index
 
@@ -43,7 +56,11 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
         self.update_style(completed)
 
     def update_style(self, completed: bool) -> None:
-        """Updates the style of the label based on completion status."""
+        """Updates the style of the label based on completion status.
+
+        Args:
+            completed (bool): Whether the task is completed.
+        """
         if completed:
             self.label.configure(text_color="#888888", font=ctk.CTkFont(overstrike=True))
         else:

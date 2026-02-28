@@ -1,7 +1,8 @@
 import os
 import json
+import pytest
 from task_manager.models.task import Task
-from task_manager.infra.repository import TaskRepository
+from task_manager.infra.repository import TaskRepository, BaseRepository
 
 def test_task_serialization():
     task = Task(text="Test Task", completed=True)
@@ -11,6 +12,9 @@ def test_task_serialization():
     new_task = Task.from_dict(data)
     assert new_task.text == "Test Task"
     assert new_task.completed is True
+
+def test_repository_inheritance():
+    assert issubclass(TaskRepository, BaseRepository)
 
 def test_repository_load_save(tmp_path):
     filepath = tmp_path / "tasks.json"
