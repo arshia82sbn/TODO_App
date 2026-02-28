@@ -1,8 +1,6 @@
-import os
-import json
-import pytest
+from task_manager.infra.repository import BaseRepository, TaskRepository
 from task_manager.models.task import Task
-from task_manager.infra.repository import TaskRepository, BaseRepository
+
 
 def test_task_serialization():
     task = Task(text="Test Task", completed=True)
