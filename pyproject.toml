@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "task_manager"
-version = "0.1.0"
+version = "0.1.1"
 description = "A modern and professional daily task manager."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -13,7 +13,7 @@ authors = [
     { name = "Jules", email = "jules@example.com" }
 ]
 dependencies = [
-    "customtkinter>=5.2.1",
+    "customtkinter>=5.2.1", # Required for the modern GUI components
 ]
 
 [project.scripts]
@@ -25,12 +25,31 @@ packages = ["src/task_manager"]
 [tool.black]
 line-length = 100
 target-version = ["py39"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
 
 [tool.ruff]
 line-length = 100
+target-version = "py39"
 
 [tool.ruff.lint]
-select = ["E", "F", "B", "I"]
+select = ["E", "F", "B", "I", "N", "D"]
+ignore = ["D100", "D104"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.mypy]
 python_version = "3.12"
