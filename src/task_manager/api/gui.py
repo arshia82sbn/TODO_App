@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any, Callable, Optional
 
 import customtkinter as ctk
 
@@ -14,9 +14,19 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
         index: int,
         task_text: str,
         completed: bool,
-        on_toggle: Any,
-        on_delete: Any
-    ):
+        on_toggle: Callable[[int], None],
+        on_delete: Callable[[int], None]
+    ) -> None:
+        """Initializes a TaskRow.
+
+        Args:
+            master: Parent widget.
+            index: Task index.
+            task_text: Task description.
+            completed: Completion status.
+            on_toggle: Toggle callback.
+            on_delete: Delete callback.
+        """
         super().__init__(master, fg_color="transparent")
         self.index = index
 
@@ -66,7 +76,7 @@ class TaskApp(ctk.CTk):  # type: ignore
         super().__init__()
 
         self.service = service or TaskService()
-        self.task_rows: List[TaskRow] = []
+        self.task_rows: list[TaskRow] = []
 
         self.setup_ui()
         self.refresh_task_list()

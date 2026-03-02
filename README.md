@@ -12,6 +12,7 @@ A professional, refactored task manager built with **CustomTkinter**.
 - 💾 **Persistence**: Automatic saving to `tasks.json`.
 - 🏗️ **Clean Architecture**: Implemented with Repository and Service patterns.
 - 🧪 **Tested**: Unit tests included.
+- 🎨 **Modern Design**: Built with a sleek dark theme.
 
 ## 📦 Installation
 
@@ -41,11 +42,11 @@ task-manager
 
 ## 🏗️ Project Structure
 
-- `src/task_manager/api/`: GUI implementation.
+- `src/task_manager/api/`: GUI implementation and public API.
 - `src/task_manager/core/`: Business logic (TaskService).
 - `src/task_manager/infra/`: Persistence logic (TaskRepository).
-- `src/task_manager/models/`: Data models (Task).
-- `tests/`: Unit tests.
+- `src/task_manager/models/`: Data models (Task) and Factories.
+- `tests/`: Unit tests and test stubs.
 
 ## 🧪 Testing
 
@@ -55,7 +56,9 @@ Run tests with `pytest`:
 pytest
 ```
 
-## 🌗 Features
+## 🚀 Continuous Integration
 
-- Modern Dark Theme.
-- Responsive design with scrollable task list.
+This project uses GitHub Actions for CI, including:
+- Linting with `ruff`
+- Type checking with `mypy`
+- Unit tests with `pytest`
