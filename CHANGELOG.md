@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2023-10-27
+
+### Changed
+- Refactored `TaskRepository` to use Strategy Pattern with `BaseRepository`.
+- Improved GUI type hints for callbacks.
+- Enhanced `TaskService` to depend on `BaseRepository` abstraction.
+- Introduced `TaskFactory` in `models/task.py` for centralized task creation.
+- Exposed `TaskApp` in `api/__init__.py`.
+
 ## [0.1.0] - 2023-10-27
 
 ### Added
