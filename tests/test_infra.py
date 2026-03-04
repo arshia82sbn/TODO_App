@@ -1,7 +1,7 @@
-import os
-import json
+
+from task_manager.infra.repository import BaseRepository, TaskRepository
 from task_manager.models.task import Task
-from task_manager.infra.repository import TaskRepository
+
 
 def test_task_serialization():
     task = Task(text="Test Task", completed=True)
@@ -29,3 +29,17 @@ def test_repository_corrupted_file(tmp_path):
     filepath.write_text("invalid json")
     repo = TaskRepository(filepath=str(filepath))
     assert repo.load_all() == []
+
+def test_base_repository_implementation():
+    class MemoryRepo(BaseRepository):
+        def __init__(self):
+            self.tasks = []
+        def load_all(self) -> list[Task]:
+            return self.tasks
+        def save_all(self, tasks: list[Task]) -> None:
+            self.tasks = tasks
+
+    repo = MemoryRepo()
+    repo.save_all([Task(text="Memory Task")])
+    assert len(repo.load_all()) == 1
+    assert repo.load_all()[0].text == "Memory Task"

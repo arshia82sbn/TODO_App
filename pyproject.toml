@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "task_manager"
-version = "0.1.0"
+version = "0.1.1"
 description = "A modern and professional daily task manager."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -24,13 +24,18 @@ packages = ["src/task_manager"]
 
 [tool.black]
 line-length = 100
-target-version = ["py39"]
+target-version = ["py312"]
 
 [tool.ruff]
 line-length = 100
+target-version = "py312"
 
 [tool.ruff.lint]
-select = ["E", "F", "B", "I"]
+select = ["E", "F", "B", "I", "W", "UP", "ANN", "S", "B", "COM", "C4", "DTZ", "T20", "RET", "SIM", "ARG", "PTH", "ERA", "PL", "TRY", "RUF"]
+ignore = ["S101", "ANN001", "ANN201", "ANN204", "PLR2004", "ANN401", "PLR0913", "RUF001", "ARG002", "PTH110", "PTH123"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["task_manager"]
 
 [tool.mypy]
 python_version = "3.12"

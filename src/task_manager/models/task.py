@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Dict
+from typing import Any
 
 
 @dataclass
@@ -13,7 +13,7 @@ class Task:
     text: str
     completed: bool = False
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Converts the task to a dictionary for JSON serialization.
 
         Returns:
@@ -21,11 +21,11 @@ class Task:
         """
         return {
             "text": self.text,
-            "completed": self.completed
+            "completed": self.completed,
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "Task":
+    def from_dict(cls, data: dict[str, Any]) -> "Task":
         """Creates a Task instance from a dictionary.
 
         Args:
@@ -36,5 +36,25 @@ class Task:
         """
         return cls(
             text=data.get("text", ""),
-            completed=data.get("completed", False)
+            completed=data.get("completed", False),
         )
+
+
+class TaskFactory:
+    """Factory for creating Task instances.
+
+    This class implements the Factory Pattern to centralize task creation.
+    """
+
+    @staticmethod
+    def create_task(text: str, completed: bool = False) -> Task:
+        """Creates a new Task instance.
+
+        Args:
+            text (str): Task description.
+            completed (bool): Completion status.
+
+        Returns:
+            Task: A new Task instance.
+        """
+        return Task(text=text, completed=completed)
