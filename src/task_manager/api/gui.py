@@ -1,4 +1,5 @@
-from typing import Any, List, Optional
+from collections.abc import Callable
+from typing import Any
 
 import customtkinter as ctk
 
@@ -14,8 +15,8 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
         index: int,
         task_text: str,
         completed: bool,
-        on_toggle: Any,
-        on_delete: Any
+        on_toggle: Callable[[int], None],
+        on_delete: Callable[[int], None],
     ):
         super().__init__(master, fg_color="transparent")
         self.index = index
@@ -24,7 +25,7 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
             self,
             text="",
             width=30,
-            command=lambda: on_toggle(self.index)
+            command=lambda: on_toggle(self.index),
         )
         if completed:
             self.checkbox.select()
@@ -36,7 +37,7 @@ class TaskRow(ctk.CTkFrame):  # type: ignore
         self.delete_btn = ctk.CTkButton(
             self, text="✕", width=30, height=20, corner_radius=10,
             fg_color="transparent", hover_color="#d11a2a",
-            command=lambda: on_delete(self.index)
+            command=lambda: on_delete(self.index),
         )
         self.delete_btn.pack(side="right", padx=5)
 
@@ -57,7 +58,7 @@ class TaskApp(ctk.CTk):  # type: ignore
     business logic to the TaskService.
     """
 
-    def __init__(self, service: Optional[TaskService] = None):
+    def __init__(self, service: TaskService | None = None):
         """Initializes the application.
 
         Args:
@@ -66,7 +67,7 @@ class TaskApp(ctk.CTk):  # type: ignore
         super().__init__()
 
         self.service = service or TaskService()
-        self.task_rows: List[TaskRow] = []
+        self.task_rows: list[TaskRow] = []
 
         self.setup_ui()
         self.refresh_task_list()
@@ -80,7 +81,7 @@ class TaskApp(ctk.CTk):  # type: ignore
         ctk.CTkLabel(
             self,
             text="📅 Daily Task Manager",
-            font=ctk.CTkFont(size=28, weight="bold")
+            font=ctk.CTkFont(size=28, weight="bold"),
         ).pack(pady=20)
 
         self.scroll_frame = ctk.CTkScrollableFrame(self, width=600, height=400, corner_radius=15)
@@ -94,7 +95,7 @@ class TaskApp(ctk.CTk):  # type: ignore
             width=450,
             height=40,
             font=ctk.CTkFont(size=14),
-            placeholder_text="Write a new task here..."
+            placeholder_text="Write a new task here...",
         )
         self.entry.pack(side="left", padx=10)
         self.entry.bind("<Return>", self.add_task_event)
@@ -103,10 +104,10 @@ class TaskApp(ctk.CTk):  # type: ignore
             input_frame,
             text="➕ Add Task",
             width=120,
-            command=self.add_task_event
+            command=self.add_task_event,
         ).pack(side="right", padx=10)
 
-    def add_task_event(self, event: Optional[Any] = None) -> None:
+    def add_task_event(self, event: Any | None = None) -> None:
         """Handles the add task event.
 
         Args:
@@ -150,7 +151,7 @@ class TaskApp(ctk.CTk):  # type: ignore
                 task.text,
                 task.completed,
                 self.toggle_task,
-                self.delete_task
+                self.delete_task,
             )
             row.pack(fill="x", pady=5)
             self.task_rows.append(row)
