@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "task_manager"
-version = "0.1.0"
+version = "0.1.1"
 description = "A modern and professional daily task manager."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -13,7 +13,15 @@ authors = [
     { name = "Jules", email = "jules@example.com" }
 ]
 dependencies = [
-    "customtkinter>=5.2.1",
+    "customtkinter>=5.2.1", # Modern and customizable GUI library based on Tkinter
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",    # Testing framework
+    "mypy>=1.0",      # Static type checker
+    "ruff>=0.1.0",    # Fast Python linter and formatter
+    "black>=23.0",    # Uncompromising code formatter
 ]
 
 [project.scripts]
@@ -30,7 +38,8 @@ target-version = ["py39"]
 line-length = 100
 
 [tool.ruff.lint]
-select = ["E", "F", "B", "I"]
+select = ["E", "F", "B", "I", "ANN"]
+ignore = ["S101", "PLR0913", "ANN101", "ANN102", "ANN002", "ANN003", "ANN401"]
 
 [tool.mypy]
 python_version = "3.12"

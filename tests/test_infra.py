@@ -1,9 +1,11 @@
-import os
-import json
-from task_manager.models.task import Task
-from task_manager.infra.repository import TaskRepository
+from pathlib import Path
 
-def test_task_serialization():
+from task_manager.infra.repository import TaskRepository
+from task_manager.models.task import Task
+
+
+def test_task_serialization() -> None:
+    """Tests the serialization of a Task object."""
     task = Task(text="Test Task", completed=True)
     data = task.to_dict()
     assert data == {"text": "Test Task", "completed": True}
@@ -12,7 +14,9 @@ def test_task_serialization():
     assert new_task.text == "Test Task"
     assert new_task.completed is True
 
-def test_repository_load_save(tmp_path):
+
+def test_repository_load_save(tmp_path: Path) -> None:
+    """Tests loading and saving tasks to the repository."""
     filepath = tmp_path / "tasks.json"
     repo = TaskRepository(filepath=str(filepath))
 
@@ -24,7 +28,9 @@ def test_repository_load_save(tmp_path):
     assert loaded_tasks[0].text == "Task 1"
     assert loaded_tasks[1].completed is True
 
-def test_repository_corrupted_file(tmp_path):
+
+def test_repository_corrupted_file(tmp_path: Path) -> None:
+    """Tests the repository behavior with a corrupted file."""
     filepath = tmp_path / "corrupted.json"
     filepath.write_text("invalid json")
     repo = TaskRepository(filepath=str(filepath))
