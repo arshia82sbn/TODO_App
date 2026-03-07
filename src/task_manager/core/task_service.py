@@ -1,7 +1,6 @@
-from typing import List, Optional
 
-from task_manager.infra.repository import TaskRepository
-from task_manager.models.task import Task
+from task_manager.infra.repository import BaseRepository, TaskRepository
+from task_manager.models.task import Task, TaskFactory
 
 
 class TaskService:
@@ -9,19 +8,21 @@ class TaskService:
 
     This class acts as a Service/Facade, providing a clean API for the GUI
     to interact with tasks while hiding the details of storage.
+    # Rationale: The Facade pattern simplifies the interaction between the GUI and
+    # the complex business logic and storage layers, promoting loose coupling.
     """
 
-    def __init__(self, repository: Optional[TaskRepository] = None):
+    def __init__(self, repository: BaseRepository | None = None):
         """Initializes the service with a repository.
 
         Args:
-            repository (Optional[TaskRepository]): The repository to use.
+            repository (Optional[BaseRepository]): The repository to use.
                 Defaults to a new TaskRepository instance.
         """
         self.repository = repository or TaskRepository()
-        self.tasks: List[Task] = self.repository.load_all()
+        self.tasks: list[Task] = self.repository.load_all()
 
-    def get_tasks(self) -> List[Task]:
+    def get_tasks(self) -> list[Task]:
         """Returns the current list of tasks.
 
         Returns:
@@ -38,7 +39,7 @@ class TaskService:
         Returns:
             Task: The newly created task.
         """
-        new_task = Task(text=text)
+        new_task = TaskFactory.create_task(text=text)
         self.tasks.append(new_task)
         self.repository.save_all(self.tasks)
         return new_task
