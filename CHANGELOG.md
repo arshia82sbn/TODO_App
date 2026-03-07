@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2023-10-28
+
+### Added
+- Factory Pattern implementation for `Task` creation.
+- Strategy Pattern for persistence with `BaseRepository`.
+- Improved GUI type hints with `Callable`.
+- Exported `TaskApp` in `task_manager.api`.
+
 ## [0.1.0] - 2023-10-27
 
 ### Added
