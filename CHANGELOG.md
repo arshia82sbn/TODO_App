@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2024-05-24
+
+### Added
+- Implementation of the **Factory Pattern** for task creation.
+- Implementation of the **Strategy Pattern** for persistence (BaseRepository).
+- Improved GUI type hints and callback safety.
+- Refined public API exports in `src/task_manager/api`.
+
 ## [0.1.0] - 2023-10-27
 
 ### Added
