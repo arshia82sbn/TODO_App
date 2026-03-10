@@ -41,11 +41,11 @@ task-manager
 
 ## 🏗️ Project Structure
 
-- `src/task_manager/api/`: GUI implementation.
-- `src/task_manager/core/`: Business logic (TaskService).
-- `src/task_manager/infra/`: Persistence logic (TaskRepository).
-- `src/task_manager/models/`: Data models (Task).
-- `tests/`: Unit tests.
+- `src/task_manager/api/`: GUI implementation (Facade for TaskService).
+- `src/task_manager/core/`: Business logic and service orchestration.
+- `src/task_manager/infra/`: Persistence logic (Strategy pattern via BaseRepository).
+- `src/task_manager/models/`: Data models and object creation (Factory pattern).
+- `tests/`: Comprehensive unit and integration tests.
 
 ## 🧪 Testing
 

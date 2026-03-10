@@ -1,18 +1,35 @@
 import json
 import os
-from typing import List
+from abc import ABC, abstractmethod
 
 from task_manager.models.task import Task
 
 
-class TaskRepository:
+class BaseRepository(ABC):
+    """Abstract base class for task persistence.
+
+    This defines the Strategy Pattern interface for different storage backends.
+    """
+
+    @abstractmethod
+    def load_all(self) -> list[Task]:
+        """Loads all tasks from storage."""
+        pass
+
+    @abstractmethod
+    def save_all(self, tasks: list[Task]) -> None:
+        """Saves all tasks to storage."""
+        pass
+
+
+class TaskRepository(BaseRepository):
     """Handles persistence of tasks to a JSON file.
 
     This class implements the Repository Pattern to abstract the data storage
     mechanism from the rest of the application.
     """
 
-    def __init__(self, filepath: str = "tasks.json"):
+    def __init__(self, filepath: str = "tasks.json") -> None:
         """Initializes the repository with a specific file path.
 
         Args:
@@ -20,7 +37,7 @@ class TaskRepository:
         """
         self.filepath = filepath
 
-    def load_all(self) -> List[Task]:
+    def load_all(self) -> list[Task]:
         """Loads all tasks from the JSON file.
 
         Returns:
@@ -30,14 +47,14 @@ class TaskRepository:
             return []
 
         try:
-            with open(self.filepath, "r") as f:
+            with open(self.filepath) as f:
                 data = json.load(f)
                 return [Task.from_dict(item) for item in data]
-        except (json.JSONDecodeError, IOError):
+        except (OSError, json.JSONDecodeError):
             # Fallback to empty list if file is corrupted or unreadable
             return []
 
-    def save_all(self, tasks: List[Task]) -> None:
+    def save_all(self, tasks: list[Task]) -> None:
         """Saves all tasks to the JSON file.
 
         Args:
