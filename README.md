@@ -1,61 +1,58 @@
-# ✅ Daily Task Manager
+# Daily Task Manager
 
-A professional, refactored task manager built with **CustomTkinter**.
+A modern and professional daily task manager built with Python and CustomTkinter.
 
-![Todo App](demo.gif)
+## Features
 
-## 🚀 Features
+- **Class-based GUI**: Clean and intuitive interface using `customtkinter`.
+- **Repository Pattern**: Abstracted data storage for easy extension.
+- **Service Layer**: Decoupled business logic from UI and infrastructure.
+- **Factory Pattern**: Centralized object creation.
+- **Modern Build System**: Managed with `pyproject.toml` and `hatchling`.
+- **Quality Assured**: Full type hints, PEP 8 compliance, and comprehensive unit tests.
 
-- ➕ **Add Tasks**: Easily enter new tasks.
-- ✅ **Toggle Tasks**: Mark tasks as completed with a visual strike-through.
-- ❌ **Delete Tasks**: Remove tasks instantly.
-- 💾 **Persistence**: Automatic saving to `tasks.json`.
-- 🏗️ **Clean Architecture**: Implemented with Repository and Service patterns.
-- 🧪 **Tested**: Unit tests included.
-
-## 📦 Installation
+## Installation
 
 ```bash
 pip install .
 ```
 
-Or for development:
+## Usage
 
-```bash
-pip install -e .
-```
-
-## 🛠️ Usage
-
-Run the application:
-
-```bash
-python -m task_manager
-```
-
-Or if installed as a package:
+Run the application using the CLI entry point:
 
 ```bash
 task-manager
 ```
 
-## 🏗️ Project Structure
+Or run it as a module:
 
-- `src/task_manager/api/`: GUI implementation.
-- `src/task_manager/core/`: Business logic (TaskService).
-- `src/task_manager/infra/`: Persistence logic (TaskRepository).
-- `src/task_manager/models/`: Data models (Task).
-- `tests/`: Unit tests.
+```bash
+python -m task_manager
+```
 
-## 🧪 Testing
+## Development
 
-Run tests with `pytest`:
+Install development dependencies:
+
+```bash
+pip install ".[dev]"
+```
+
+Run tests:
 
 ```bash
 pytest
 ```
 
-## 🌗 Features
+Run linting:
 
-- Modern Dark Theme.
-- Responsive design with scrollable task list.
+```bash
+ruff check .
+```
+
+Run type checking:
+
+```bash
+mypy src
+```

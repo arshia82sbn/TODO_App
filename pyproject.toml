@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "task_manager"
-version = "0.1.0"
+version = "0.1.1"
 description = "A modern and professional daily task manager."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -30,7 +30,9 @@ target-version = ["py39"]
 line-length = 100
 
 [tool.ruff.lint]
-select = ["E", "F", "B", "I"]
+# Improved linting rules for better code quality and consistency
+select = ["E", "F", "B", "I", "N", "UP", "PL", "ANN"]
+ignore = ["S101", "PLR0913", "ANN401"]
 
 [tool.mypy]
 python_version = "3.12"
