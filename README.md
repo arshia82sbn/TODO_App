@@ -1,61 +1,44 @@
-# ✅ Daily Task Manager
+# Daily Task Manager
 
-A professional, refactored task manager built with **CustomTkinter**.
+A professional, modern daily task manager built with Python and `customtkinter`.
 
-![Todo App](demo.gif)
+## Features
 
-## 🚀 Features
+- **Modern GUI**: A clean and dark-themed interface.
+- **Persistent Storage**: Tasks are automatically saved to a `tasks.json` file.
+- **Design Patterns**: Implements Factory and Strategy patterns for robust architecture.
+- **Type Safe**: Fully type-hinted codebase.
 
-- ➕ **Add Tasks**: Easily enter new tasks.
-- ✅ **Toggle Tasks**: Mark tasks as completed with a visual strike-through.
-- ❌ **Delete Tasks**: Remove tasks instantly.
-- 💾 **Persistence**: Automatic saving to `tasks.json`.
-- 🏗️ **Clean Architecture**: Implemented with Repository and Service patterns.
-- 🧪 **Tested**: Unit tests included.
-
-## 📦 Installation
+## Installation
 
 ```bash
 pip install .
 ```
 
-Or for development:
+## Usage
 
-```bash
-pip install -e .
-```
-
-## 🛠️ Usage
-
-Run the application:
-
-```bash
-python -m task_manager
-```
-
-Or if installed as a package:
+Run the application using the CLI:
 
 ```bash
 task-manager
 ```
 
-## 🏗️ Project Structure
+Or via Python:
 
-- `src/task_manager/api/`: GUI implementation.
-- `src/task_manager/core/`: Business logic (TaskService).
-- `src/task_manager/infra/`: Persistence logic (TaskRepository).
-- `src/task_manager/models/`: Data models (Task).
-- `tests/`: Unit tests.
+```bash
+python -m task_manager
+```
 
-## 🧪 Testing
+## Development
 
-Run tests with `pytest`:
+Install development dependencies:
+
+```bash
+pip install ".[dev]"
+```
+
+Run tests:
 
 ```bash
 pytest
 ```
-
-## 🌗 Features
-
-- Modern Dark Theme.
-- Responsive design with scrollable task list.

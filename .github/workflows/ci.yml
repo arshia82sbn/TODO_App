@@ -7,21 +7,28 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  quality:
+    name: Quality and Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install . pytest mypy ruff
-    - name: Lint with ruff
-      run: ruff check .
-    - name: Type check with mypy
-      run: mypy src
-    - name: Test with pytest
-      run: pytest
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ".[dev]"
+
+      - name: Lint with ruff
+        run: ruff check .
+
+      - name: Type check with mypy
+        run: mypy src
+
+      - name: Run tests with pytest
+        run: pytest

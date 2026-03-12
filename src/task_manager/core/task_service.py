@@ -1,7 +1,5 @@
-from typing import List, Optional
-
-from task_manager.infra.repository import TaskRepository
-from task_manager.models.task import Task
+from task_manager.core.repository_interface import BaseRepository
+from task_manager.models.task import Task, TaskFactory
 
 
 class TaskService:
@@ -11,21 +9,20 @@ class TaskService:
     to interact with tasks while hiding the details of storage.
     """
 
-    def __init__(self, repository: Optional[TaskRepository] = None):
+    def __init__(self, repository: BaseRepository) -> None:
         """Initializes the service with a repository.
 
         Args:
-            repository (Optional[TaskRepository]): The repository to use.
-                Defaults to a new TaskRepository instance.
+            repository (BaseRepository): The repository to use.
         """
-        self.repository = repository or TaskRepository()
-        self.tasks: List[Task] = self.repository.load_all()
+        self.repository = repository
+        self.tasks: list[Task] = self.repository.load_all()
 
-    def get_tasks(self) -> List[Task]:
+    def get_tasks(self) -> list[Task]:
         """Returns the current list of tasks.
 
         Returns:
-            List[Task]: All tasks.
+            list[Task]: All tasks.
         """
         return self.tasks
 
@@ -38,7 +35,7 @@ class TaskService:
         Returns:
             Task: The newly created task.
         """
-        new_task = Task(text=text)
+        new_task = TaskFactory.create_task(text=text)
         self.tasks.append(new_task)
         self.repository.save_all(self.tasks)
         return new_task
