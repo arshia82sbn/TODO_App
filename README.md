@@ -1,61 +1,59 @@
-# ✅ Daily Task Manager
+# Daily Task Manager
 
-A professional, refactored task manager built with **CustomTkinter**.
+A modern, professional desktop application for managing your daily tasks, built with Python and `customtkinter`.
 
-![Todo App](demo.gif)
+## Features
 
-## 🚀 Features
+- **Clean UI:** Modern dark-themed interface with scrollable task list.
+- **Persistent Storage:** Tasks are automatically saved to a JSON file.
+- **Architectural Excellence:** Implements Strategy, Factory, and Facade design patterns.
+- **Type Safe:** Fully type-hinted and verified with `mypy`.
+- **Quality Assured:** Comprehensive test suite and linting with `ruff`.
 
-- ➕ **Add Tasks**: Easily enter new tasks.
-- ✅ **Toggle Tasks**: Mark tasks as completed with a visual strike-through.
-- ❌ **Delete Tasks**: Remove tasks instantly.
-- 💾 **Persistence**: Automatic saving to `tasks.json`.
-- 🏗️ **Clean Architecture**: Implemented with Repository and Service patterns.
-- 🧪 **Tested**: Unit tests included.
+## Project Structure
 
-## 📦 Installation
+- `src/task_manager/api/`: GUI implementation using `customtkinter`.
+- `src/task_manager/core/`: Business logic and service interfaces.
+- `src/task_manager/infra/`: Data persistence (JSON repository).
+- `src/task_manager/models/`: Core data classes and factories.
+
+## Installation
 
 ```bash
 pip install .
 ```
 
-Or for development:
+## Usage
 
-```bash
-pip install -e .
-```
-
-## 🛠️ Usage
-
-Run the application:
-
-```bash
-python -m task_manager
-```
-
-Or if installed as a package:
+Run the application using the command-line entry point:
 
 ```bash
 task-manager
 ```
 
-## 🏗️ Project Structure
+Or directly via Python:
 
-- `src/task_manager/api/`: GUI implementation.
-- `src/task_manager/core/`: Business logic (TaskService).
-- `src/task_manager/infra/`: Persistence logic (TaskRepository).
-- `src/task_manager/models/`: Data models (Task).
-- `tests/`: Unit tests.
+```bash
+python -m task_manager
+```
 
-## 🧪 Testing
+## Development
 
-Run tests with `pytest`:
+Install development dependencies:
+
+```bash
+pip install ".[dev]"
+```
+
+### Running Tests
 
 ```bash
 pytest
 ```
 
-## 🌗 Features
+### Linting and Type Checking
 
-- Modern Dark Theme.
-- Responsive design with scrollable task list.
+```bash
+ruff check .
+mypy src
+```
