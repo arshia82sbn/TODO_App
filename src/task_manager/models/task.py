@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Dict
+from typing import Any
 
 
 @dataclass
@@ -10,31 +10,46 @@ class Task:
         text (str): The description of the task.
         completed (bool): Whether the task is completed.
     """
+
     text: str
     completed: bool = False
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Converts the task to a dictionary for JSON serialization.
 
         Returns:
-            Dict[str, Any]: Dictionary representation of the task.
+            dict[str, Any]: Dictionary representation of the task.
         """
-        return {
-            "text": self.text,
-            "completed": self.completed
-        }
+        return {"text": self.text, "completed": self.completed}
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "Task":
+    def from_dict(cls, data: dict[str, Any]) -> "Task":
         """Creates a Task instance from a dictionary.
 
         Args:
-            data (Dict[str, Any]): Dictionary containing task data.
+            data (dict[str, Any]): Dictionary containing task data.
 
         Returns:
             Task: A new Task instance.
         """
-        return cls(
-            text=data.get("text", ""),
-            completed=data.get("completed", False)
-        )
+        return cls(text=data.get("text", ""), completed=data.get("completed", False))
+
+
+class TaskFactory:
+    """Factory for creating Task objects.
+
+    This class implements the Factory Pattern to centralize task instantiation.
+    """
+
+    @staticmethod
+    def create_task(text: str, completed: bool = False) -> Task:
+        """Creates a new Task instance.
+
+        Args:
+            text (str): The task description.
+            completed (bool): Whether the task is completed.
+
+        Returns:
+            Task: A new Task instance.
+        """
+        return Task(text=text, completed=completed)

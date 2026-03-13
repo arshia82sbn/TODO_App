@@ -1,6 +1,4 @@
-from typing import List, Optional
-
-from task_manager.infra.repository import TaskRepository
+from task_manager.core.repository_interface import BaseRepository
 from task_manager.models.task import Task
 
 
@@ -8,24 +6,24 @@ class TaskService:
     """Business logic for managing tasks.
 
     This class acts as a Service/Facade, providing a clean API for the GUI
-    to interact with tasks while hiding the details of storage.
+    to interact with tasks while hiding the details of storage. It depends
+    on the BaseRepository interface (Dependency Inversion Principle).
     """
 
-    def __init__(self, repository: Optional[TaskRepository] = None):
+    def __init__(self, repository: BaseRepository) -> None:
         """Initializes the service with a repository.
 
         Args:
-            repository (Optional[TaskRepository]): The repository to use.
-                Defaults to a new TaskRepository instance.
+            repository (BaseRepository): The concrete repository implementation.
         """
-        self.repository = repository or TaskRepository()
-        self.tasks: List[Task] = self.repository.load_all()
+        self.repository = repository
+        self.tasks: list[Task] = self.repository.load_all()
 
-    def get_tasks(self) -> List[Task]:
+    def get_tasks(self) -> list[Task]:
         """Returns the current list of tasks.
 
         Returns:
-            List[Task]: All tasks.
+            list[Task]: All tasks.
         """
         return self.tasks
 
