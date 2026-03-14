@@ -1,7 +1,10 @@
-import pytest
 from unittest.mock import MagicMock
+
+import pytest
+
 from task_manager.core.task_service import TaskService
 from task_manager.models.task import Task
+
 
 @pytest.fixture
 def mock_repo():

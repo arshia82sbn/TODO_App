@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2023-10-28
+
+### Added
+- Implemented Factory pattern with `TaskFactory`.
+- Implemented Strategy pattern with `BaseRepository` interface.
+- Improved type hints and decoupling in `TaskService` and `TaskApp`.
+
 ## [0.1.0] - 2023-10-27
 
 ### Added
